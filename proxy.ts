@@ -1,7 +1,21 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
+function hasUsableDatabaseUrl() {
+  const value = process.env.DATABASE_URL?.trim();
+  if (!value) return false;
+
+  try {
+    const url = new URL(value);
+    if (!['postgres:', 'postgresql:'].includes(url.protocol)) return false;
+    if (process.env.VERCEL && ['localhost', '127.0.0.1', '::1'].includes(url.hostname)) return false;
+    return Boolean(url.hostname && url.pathname.length > 1);
+  } catch {
+    return false;
+  }
+}
+
 export function proxy(request: NextRequest) {
-  if (process.env.DATABASE_URL?.trim()) return NextResponse.next();
+  if (hasUsableDatabaseUrl()) return NextResponse.next();
 
   if (request.nextUrl.pathname.startsWith('/api/')) {
     return NextResponse.json(
