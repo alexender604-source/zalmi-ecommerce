@@ -6,6 +6,7 @@ import { Footer } from '@/components/footer';
 import { FloatingWhatsApp } from '@/components/floating-whatsapp';
 import { CartProvider } from '@/components/cart-provider';
 export const dynamic='force-dynamic';
+export const maxDuration=60;
 export default async function StoreLayout({children}:{children:React.ReactNode}){
  const [settings,navigation,categories]=await Promise.all([getSettings(),getNavigation(),getCategories()]);
  const menus=navigation.filter(i=>!i.category||i.category.active).map(i=>({id:i.id,label:i.label,url:navigationUrl(i),parentId:i.parentId,location:i.location}));
