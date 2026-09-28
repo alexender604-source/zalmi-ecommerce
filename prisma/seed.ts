@@ -2,7 +2,7 @@ import { PrismaClient, Prisma } from '@prisma/client';
 import { readFileSync, statSync } from 'node:fs';
 import { hashPassword } from '../lib/password';
 const db=new PrismaClient();
-const load=(file:string)=>JSON.parse(readFileSync(file,'utf8'));
+const load=(file:string)=>JSON.parse(readFileSync(file,'utf8').replace(/^\uFEFF/,''));
 const slug=(v:string)=>v.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 // Retained catalog photography keeps its existing local paths so saved URLs remain stable.
 const image=(name:string)=>`/images/catalog/${name}`;
