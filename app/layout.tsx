@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { getSettings } from "@/lib/settings";
 import { siteUrl } from "@/lib/seo";
 
 const geistSans = Geist({
@@ -14,19 +13,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const settings = await getSettings();
-  return {
-    metadataBase: new URL(siteUrl()),
-    applicationName: settings.storeName,
-    title: { default: `${settings.storeName} | Handmade Heritage Essentials`, template: `%s | ${settings.storeName}` },
-    description: settings.description,
-    alternates: { canonical: "/" },
-    openGraph: { type: "website", siteName: settings.storeName, title: `${settings.storeName} | Handmade Heritage Essentials`, description: settings.description, url: "/", images: [settings.logo] },
-    twitter: { card: "summary_large_image", title: `${settings.storeName} | Handmade Heritage Essentials`, description: settings.description, images: [settings.logo] },
-    icons: { icon: settings.favicon || "/favicon.ico" },
-  };
-}
+const title = "Zalmi | Handmade Heritage Essentials";
+const description = "Zalmi offers handmade Peshawari chappals, traditional footwear, Khaddar, men's shawls and other Pakistani men's fashion products.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl()),
+  applicationName: "Zalmi",
+  title: { default: title, template: "%s | Zalmi" },
+  description,
+  alternates: { canonical: "/" },
+  openGraph: { type: "website", siteName: "Zalmi", title, description, url: "/", images: ["/images/zalmi-logo.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/images/zalmi-logo.png"] },
+  icons: { icon: "/zalmi-icon.png" },
+};
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
