@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --brand-primary: #fa8019;
+  --brand-primary-hover: #d9680b;
+  --brand-secondary: #92542a;
+  --brand-accent: #b7a494;
+  --background: #fffdfb;
+  --surface: #ffffff;
+  --surface-muted: #f6f1ed;
+  --foreground: #2b2b2b;
+  --muted: #666666;
+  --border: #ded6cf;
+  --sale: #92542a;
+  --success: #2db742;
+  --warning: #fa8019;
+  --error: #c7372f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand: var(--brand-primary);
+  --color-brand-hover: var(--brand-primary-hover);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-accent: var(--brand-accent);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-sale: var(--sale);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input:not([type="checkbox"]):not([type="file"]), select, textarea {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: white;
+  color: var(--foreground);
+  padding: 0.65rem 0.75rem;
+}
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 3px;
+}
+button, a { -webkit-tap-highlight-color: transparent; }
+button:not(:disabled), select { cursor: pointer; }
+.admin-form input:not([type="checkbox"]):not([type="file"]), .admin-form select, .admin-form textarea { width: 100%; }
+.admin-form input[type="checkbox"] { width: 1rem; height: 1rem; accent-color: var(--brand-primary); }
+@media print {
+  .admin-shell > aside, .admin-shell header, .admin-form, .admin-shell button { display: none !important; }
+  .admin-shell { display: block; background: white; }
+}
+
+.container-shell {
+  width: min(100%, 1240px);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-shell {
+    padding-inline: 1.25rem;
+  }
+}
+
+.container-shell {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}

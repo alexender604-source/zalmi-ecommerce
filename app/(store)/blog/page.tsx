@@ -1,0 +1,5 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import { listPosts } from '@/lib/content';
+export const metadata={title:'Journal'};
+export default async function Blog({searchParams}:{searchParams:Promise<{page?:string}>}){const page=Math.min(10000,Math.max(1,Number((await searchParams).page)||1));const {posts,total}=await listPosts(Math.floor(page));return <div className="container-shell py-12"><h1 className="text-3xl font-bold">The Zalmi Journal</h1><div className="mt-8 grid gap-6 md:grid-cols-3">{posts.map(p=><article key={p.id} className="rounded border p-4">{p.image&&<div className="relative mb-4 aspect-video"><Image src={p.image} alt={p.title} fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover"/></div>}<h2 className="text-xl font-semibold"><Link href={'/blog/'+p.slug}>{p.title}</Link></h2><p className="mt-3 text-sm leading-7">{p.excerpt}</p></article>)}</div>{!posts.length&&<p className="py-12">New stories are on the way.</p>}<nav className="mt-8 flex gap-5">{page>1&&<Link href={'?page='+(page-1)}>Previous</Link>}{page*12<total&&<Link href={'?page='+(page+1)}>Next</Link>}</nav></div>;}

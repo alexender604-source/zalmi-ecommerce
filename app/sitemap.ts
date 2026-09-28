@@ -1,0 +1,5 @@
+import type { MetadataRoute } from 'next';
+import { db } from '@/lib/db';
+import { siteUrl } from '@/lib/seo';
+export const dynamic='force-dynamic';
+export default async function sitemap():Promise<MetadataRoute.Sitemap>{const [products,categories,pages,posts]=await Promise.all([db.product.findMany({where:{status:'PUBLISHED',noindex:false},select:{slug:true,updatedAt:true}}),db.category.findMany({where:{active:true,noindex:false},select:{slug:true,updatedAt:true}}),db.page.findMany({where:{status:'PUBLISHED',noindex:false},select:{slug:true,updatedAt:true}}),db.blogPost.findMany({where:{status:'PUBLISHED',noindex:false,publishedAt:{lte:new Date()}},select:{slug:true,updatedAt:true}})]);return [{url:siteUrl()},{url:siteUrl()+'/shop'},{url:siteUrl()+'/blog'},...products.map(p=>({url:siteUrl()+'/product/'+p.slug,lastModified:p.updatedAt})),...categories.map(c=>({url:siteUrl()+'/category/'+c.slug,lastModified:c.updatedAt})),...pages.map(p=>({url:siteUrl()+'/page/'+p.slug,lastModified:p.updatedAt})),...posts.map(p=>({url:siteUrl()+'/blog/'+p.slug,lastModified:p.updatedAt}))];}

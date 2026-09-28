@@ -1,0 +1,6 @@
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { getPrivateOrder } from '@/lib/orders';
+import { money } from '@/lib/pricing';
+export const metadata={title:'Order confirmation',robots:{index:false,follow:false},referrer:'no-referrer' as const};
+export default async function OrderSuccess({params,searchParams}:{params:Promise<{orderNumber:string}>;searchParams:Promise<{token?:string}>}){const token=(await searchParams).token;if(!token||!/^[a-f0-9]{64}$/.test(token))notFound();const order=await getPrivateOrder((await params).orderNumber,token);if(!order)notFound();return <section className="container-shell py-16"><p className="text-sm uppercase tracking-widest">Thank you for shopping with Zalmi</p><h1 className="mt-3 text-3xl font-bold">Order {order.orderNumber} received</h1><p className="mt-4">Cash on Delivery · {order.status}</p><ul className="my-8 max-w-2xl divide-y">{order.items.map(item=><li key={item.id} className="flex justify-between gap-4 py-4"><span>{item.name} {item.options} × {item.quantity}</span><strong>{money(item.total)}</strong></li>)}</ul><p>Shipping: {money(order.shipping)} · Discount: {money(order.discount)}</p><p className="mt-3 text-xl font-bold">Total: {money(order.total)}</p><Link href="/shop" className="mt-8 inline-block bg-brand px-6 py-3">Continue shopping</Link></section>;}
