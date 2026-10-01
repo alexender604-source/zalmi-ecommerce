@@ -12,26 +12,18 @@ The storefront and administration interface use the **Zalmi** identity and the p
 - Migrated existing brand-owned database content field by field with `scripts/rebrand-zalmi.ts`.
 - Kept product names, prices, inventory, variants, category structure, orders, customers, and authentic review text unchanged.
 
-## Clean image replaced
+## Clean image replacements
 
-No matching clean product-image originals were present in the repository, so no product image was substituted or edited.
+Clean supplied originals now replace the eight Peshawari Chappal product photos that used the legacy gray/gold background. The replacements are stored under `/products/takidar/` and `/products/zalmi/` as optimized WebP files. Each matched product now has a multi-angle gallery, with the primary image first.
 
-The old interface logo was removed and replaced by `/images/zalmi-logo.png`; this is a UI asset replacement rather than a product-image replacement.
+The old interface logo was also removed and replaced by `/images/zalmi-logo.png`; this is a UI asset replacement rather than a product-image replacement.
 
-## Images requiring clean replacements
+## Images still requiring clean replacements
 
 The following files contain the legacy pale gray/gold brand motif. No clean duplicate, gallery variant, larger clean source, or matching alternate hash was found locally. They remain unchanged as required.
 
 | Product or placement | Current file | Displayed in |
 | --- | --- | --- |
-| Black Woven Takidar Peshawari Chappal – Medium Sole | `/images/catalog/black-woven-takidar-peshawari-chappal-medium-sole.jpg` | Product card and product page |
-| Master Brown Woven Takidar Peshawari Chappal – Medium Sole | `/images/catalog/master-brown-woven-takidar-peshawari-chappal-medium-sole.jpg` | Product card and product page |
-| Premium Dark Brown Smart Zalmi Round Edge Peshawari Chappal | `/images/catalog/premium-dark-brown-smart-zalmi-round-edge-peshawari-chappal.jpg` | Product card and product page |
-| Premium Black Smart Zalmi Round Edge Peshawari Chappal | `/images/catalog/premium-black-smart-zalmi-round-edge-peshawari-chappal.jpg` | Product card and product page |
-| Black Doted Takidar Medium Sole Peshawari Chappal | `/images/catalog/black-doted-takidar-medium-sole-peshawari-chappal.jpg` | Product card and product page |
-| Radish Brown Doted Takidar Medium Sole Peshawari Chappal | `/images/catalog/radish-brown-doted-takidar-medium-sole-peshawari-chappal.jpg` | Product card and product page |
-| Dark Brown Doted Takidar Medium Sole Peshawari Chappal | `/images/catalog/dark-brown-doted-takidar-medium-sole-peshawari-chappal.jpg` | Product card and product page |
-| Double Shade Medium Sole Takidar Peshawari Chappal | `/images/catalog/double-shade-medium-sole-takidar-peshawari-chappal.jpg` | Product card and product page |
 | Imran Khan 804 Woolen Shawl | `/images/catalog/imran-khan-804-woolen-shawl.jpg` | Product card and product page |
 | Black Plain 100% Acrylic Men Shawl | `/images/catalog/black-plain-100-acrylic-men-shawl.jpg` | Product card and product page |
 | Off-White 48 Pure Australian Woolen Shawl with Frame Border | `/images/catalog/off-white-48-pure-australian-woolen-shawl-with-frame-border.jpg` | Product card and product page |
