@@ -33,5 +33,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|zalmi-icon.png|images/).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|zalmi-icon.png|images/|products/).*)'],
 };
